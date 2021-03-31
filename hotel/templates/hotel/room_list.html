@@ -1,13 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>All Rooms</h1>
+  <h1>All Hotel Rooms</h1>
     {% if room_list %}
         <ul>
             {% for room in room_list %}
                 <li>
                     <p>
-                        <a href="{{ room.get_absolute_url }}">{{ room.name }}</a>
+                        <img src="{{ room.photo.url }}" width="250" height="150"/>
+                        <a href="{{ room.get_absolute_url }}">{{ room.name }} </a>  : <strong> {{room.price}}</strong>
                     </p>
                 </li>
             {% endfor %}

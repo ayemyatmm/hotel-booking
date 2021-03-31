@@ -9,7 +9,7 @@ class Room(models.Model):
     name = models.CharField(max_length=100)
     price = models.TextField(max_length=100)
     description = models.TextField(max_length=2000)
-    booking = models.ForeignKey('Booking',on_delete=models.SET_NULL, null= True, blank=True)
+    photo = models.ImageField(upload_to='images/',default='defo')
 
     class Meta:
         ordering = ["name", "price","description"]
@@ -21,20 +21,27 @@ class Room(models.Model):
         return self.name
 
 class Booking(models.Model):
-    name = models.OneToOneField(User,on_delete=models.SET_NULL,null=True,blank=True)
+    name = models.CharField(max_length=100)
     arrival_date = models.DateField(null=True, blank=True)
     deperture_date = models.DateField(null=True, blank=True)
     number_rooms = models.CharField(max_length=2)
     guest = models.CharField(max_length=2)
+    room = models.ForeignKey(Room,on_delete= models.CASCADE)
 
     def __str__(self):
         return str(self.name)
 
 class RoomService(models.Model):
-    swimming_pool = models.TextField(max_length=1000)
-    baby_bed = models.TextField(max_length=1000)
-    convience_store = models.TextField(max_length=1000)
-    booking = models.ForeignKey(User,on_delete=models.SET_NULL, null=True,blank=True)
+    swimming_pool = models.BooleanField(blank=True)
+    baby_bed = models.BooleanField(blank=True)
+    convience_store = models.BooleanField(blank=True)
+    booking = models.ForeignKey(Booking,on_delete=models.SET_NULL, null=True,blank=True)
 
     def __str__(self):
-        return self.booking
+        return str(self.swimming_pool)
+
+class Restaurants(models.Model):
+    photo = models.ImageField(upload_to='images/',default='defo')
+
+    def __str__(self):
+        return self.photo

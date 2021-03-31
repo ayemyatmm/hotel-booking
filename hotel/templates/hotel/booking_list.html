@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+{% if booking_list %}
+<ul>
+    {% for booking in booking_list %}
+        <li>
+            <a href="{% url 'booking-detail' booking.pk %}">{{ booking }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no blogs.</p>
+{% endif %}
+{% endblock %}

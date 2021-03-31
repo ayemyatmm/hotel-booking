@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Artisan Eats from East to West
+  Restaurants</h2>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <table>
+ <p><img src="{{ restaurants.photo.url }}" width="150" height="150"/></p>
+  </table>
+</form>
+ 
+  
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h2>Booking Detail Information</h2>
+    <p>Room Type:{{booking.room}}</p>
+    <p>Book Customer Name: {{ booking.name }}</p>
+    <p>Arrival Date: {{ booking.arrival_date }}</p>
+    <p>Deperture Date: {{ booking.deperture_date }}</p>
+    <p>Number Of Rooms: {{ booking.number_rooms }}</p>
+    <p>Guest: {{ booking.guest }}</p>
+    <p>Add Service Support:
+    <a href="{% url 'add-service' booking.id %}" class="btn btn-primary">Add a service</a></p>
+{% endblock %}
