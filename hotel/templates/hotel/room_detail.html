@@ -2,22 +2,31 @@
 
 {% block content %}
     <h1>Hotel Room Detail Description</h1>
-    <p><img src="{{ room.photo.url }}" width="500" height="300"/></p>
-    <h4>{{ room.name }} : {{ room.price }} (Includes taxes and fees)</h4><br><br>
-    <h5>Description and Explanation</h5>
+    <h5 style="color:brown;">Description and Explanation</h5>
     <p>{{ room.description }}</p>
-    <h5>Available facilities!!</h5>
-    <p>Non-Smoking <br>
-       Breakfast available,pay at the property<br>
-       Free Wifi<br>
-       Bathtub<br>
-       Air Conditioning<br>
-       Private bathroom<br>
-    </p>
+    <h5 style="color:brown;">Available facilities!!</h5>
+    <ul>
+        <li>Non-Smoking</li>
+        <li>Breakfast available,pay at the property</li>
+        <li>Free Wifi</li>
+        <li>Bathtub</li>
+        <li>Air Conditioning</li>
+        <li>Private bathroom</li>
+    </ul>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            <p><img src="{{ room.photo.url }}" width="500" height="300"/></p>
+          </div>
+          <div class="col align-self-center">
+            <h4>{{ room.name }} : $ {{ room.price }} (Includes taxes and fees)</h4>
+          </div>
+        </div>
+    
+    
     {% if user.is_authenticated %}
-            <h5><a href="{% url 'booking-create' room.id %}"><b>Tab to book</a></b></h5>
-            
-        {% else %}
-            <h5><a href="{% url 'login' %}"><b>Login</b></a> to book room</h5>
-        {% endif %}
+        <h5><a href="{% url 'booking-create' room.id %}" class="btn btn-primary"><b>Tab to book</a></b></h5>
+    {% else %}
+        <h5><a href="{% url 'login' %}?next={{request.path}}/booking_create/"  class="btn btn-primary"><b>Login</b></a> to book room</h5>
+    {% endif %}
 {% endblock %}

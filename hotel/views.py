@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Room, Booking, RoomService, Restaurants
+from .models import Room, Booking, RoomService, User
 
 # Create your views here.
 def index(request):
@@ -24,9 +24,10 @@ class BookingCreate(generic.CreateView):
     def get_success_url(self):
         return reverse('booking', kwargs={'pk': self.kwargs['pk'],})
 
-    def get_initial(self):
+    def get_initial(self, **kwargs):
         initial = super().get_initial()
-      
+        initial['room'] = Room.objects.get(pk=self.kwargs["pk"])
+        initial['name'] = self.request.user
         return initial
 
 class RoomServiceView(generic.CreateView):
@@ -35,6 +36,11 @@ class RoomServiceView(generic.CreateView):
 
     def get_success_url(self):
         return reverse('booking-detail', kwargs={'pk': self.kwargs['pk'],})
+
+    def get_initial(self, **kwargs):
+        initial = super().get_initial()
+        initial['booking'] = Booking.objects.get(pk=self.kwargs["pk"])
+        return initial
 
 class BookingUpdate(LoginRequiredMixin,generic.UpdateView):
     model = Booking
@@ -45,9 +51,7 @@ class BookingDelete(LoginRequiredMixin,generic.DeleteView):
 
 class BookingListView(generic.ListView):
     model = Booking
+    fields = ['booking_customer']
 
 class BookingDetailView(generic.DetailView):
     model = Booking
-    
-class RestaurantsView(generic.ListView):
-    model = Restaurants

@@ -1,13 +1,19 @@
-{% extends 'base_generic.html' %}
-
-{% block content %}
+{% extends 'base_generic.html' %} 
+{% block content %}       
     <h2>Booking Detail Information</h2>
-    <p>Room Type:{{booking.room}}</p>
-    <p>Book Customer Name: {{ booking.name }}</p>
-    <p>Arrival Date: {{ booking.arrival_date }}</p>
-    <p>Deperture Date: {{ booking.deperture_date }}</p>
-    <p>Number Of Rooms: {{ booking.number_rooms }}</p>
-    <p>Guest: {{ booking.guest }}</p>
-    <p>Add Service Support:
-    <a href="{% url 'add-service' booking.id %}" class="btn btn-primary">Add a service</a></p>
+    <p><strong>Room Type:</strong> {{booking.room}}</p>
+    <p><strong>Book Customer Name:</strong> {{ booking.name }}</p>
+    <p><strong>Arrival Date:</strong> {{ booking.arrival_date }}</p>
+    <p><strong>Deperture Date:</strong> {{ booking.deperture_date }}</p>
+    <p><strong>Total Rooms:</strong> {{ booking.number_rooms }} rooms</p>
+    <p><strong>Total Guest:</strong> {{ booking.guest }} customer</p>
+    <p><strong>Total Price:</strong> $ {{ booking.total_price}}</p>
+    <h2>Add Service Support</h2>
+        {% for service in booking.roomservice_set.all %}
+            <p>Swimming Pool:{{service.swimming_pool}} </p>
+            <p>Baby Bed Support :{{service.baby_bed}}</p>
+            <p>Convience Store: {{service.convience_store}}</p>
+        {% endfor %}
+    <a href="{% url 'add-service' booking.id %}" class="btn btn-primary">Add a service</a>
+    <a href="{% url 'index' %}" class="btn btn-primary">Done</a>
 {% endblock %}
