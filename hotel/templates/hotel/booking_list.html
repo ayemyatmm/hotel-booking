@@ -1,13 +1,20 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<ul>
-    {% for booking in booking_list %}
-        {% if user == booking.name %} 
-        <li>
-            <a href="{% url 'booking-detail' booking.pk %}">{{ booking }}</a>
-        </li>
-        {% endif %}
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="row">
+      <div class="col" style="margin-left: 450px;">
+        <h2 style="color:brown;">Booking List</h2><br>
+        <ul>
+            {% for booking in booking_list %}
+                {% if user == booking.name %} 
+                <li>
+                    <a href="{% url 'booking-detail' booking.pk %}">{{ booking }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1 style="color:brown; text-align: center;">All Hotel Rooms</h1><br>
+  <h1 style="color:brown; text-align: center;">Hotel Rooms List</h1><br>
     {% if room_list %}
         <ul>
             {% for room in room_list %}
@@ -9,7 +9,7 @@
                     <div class="container">
                         <div class="row">
                           <div class="col">
-                            <p> <img src="{{ room.photo.url }}" width="400" height="200"/></p>
+                            <p> <img src="{{ room.photo.url }}" width="450" height="300"/></p>
                           </div>
                           <div class="col align-self-center">
                             <a href="{{ room.get_absolute_url }}">{{ room.name }} </a>  - <strong>$ {{room.price}}</strong>

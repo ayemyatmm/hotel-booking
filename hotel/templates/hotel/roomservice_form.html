@@ -1,13 +1,18 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<h1>Service Support Form </h1>
-
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-        {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit">
-    </form>
+<div class="container">
+    <div class="row">
+      <div class="col" style="margin-left: 450px;">
+        <h2 style="color:brown;">Service Support Form </h2><br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <table>
+                {{ form.as_table }}
+                </table>
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </form>
+    </div>
+    </div>
+</div>
 {% endblock %}

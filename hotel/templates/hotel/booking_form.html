@@ -1,12 +1,18 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <form action="" method="post" >
-    <h2 style="color:blue;">Fill Your Booking Detail</h2>
-      {% csrf_token %}
-      <table>
-      {{ form.as_table }}
-      </table>
-      <input type="submit" value="Submit">
-  </form>
+<div class="container">
+  <div class="row">
+    <div class="col" style="margin-left: 450px;">
+      <form action="" method="post" >
+        <h2 style="color:brown;">Fill Your Booking Detail</h2><br>
+          {% csrf_token %}
+          <table>
+          {{ form.as_table }}
+          </table>
+          <input type="submit" value="Submit" class="btn btn-primary">
+      </form>
+      </div>
+    </div>
+  </div>
 {% endblock %}

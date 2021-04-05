@@ -1,19 +1,42 @@
 {% extends 'base_generic.html' %} 
 {% block content %}       
-    <h2>Booking Detail Information</h2>
-    <p><strong>Room Type:</strong> {{booking.room}}</p>
-    <p><strong>Book Customer Name:</strong> {{ booking.name }}</p>
-    <p><strong>Arrival Date:</strong> {{ booking.arrival_date }}</p>
-    <p><strong>Deperture Date:</strong> {{ booking.deperture_date }}</p>
-    <p><strong>Total Rooms:</strong> {{ booking.number_rooms }} rooms</p>
-    <p><strong>Total Guest:</strong> {{ booking.guest }} customer</p>
-    <p><strong>Total Price:</strong> $ {{ booking.total_price}}</p>
-    <h2>Add Service Support</h2>
-        {% for service in booking.roomservice_set.all %}
-            <p>Swimming Pool:{{service.swimming_pool}} </p>
-            <p>Baby Bed Support :{{service.baby_bed}}</p>
-            <p>Convience Store: {{service.convience_store}}</p>
-        {% endfor %}
-    <a href="{% url 'add-service' booking.id %}" class="btn btn-primary">Add a service</a>
-    <a href="{% url 'index' %}" class="btn btn-primary">Done</a>
+
+        <h2 style="color:brown;">Booking Detail Information</h2><br>
+        <table class="table">
+           <tr>
+               <th>Room Type</th>
+               <th>Book Customer Name</th>
+               <th>Arrival Date</th>
+               <th>Deperture Date</th>
+               <th>Total Rooms</th>
+               <th>Total Guest</th>
+               <th>Total Price</th>
+           </tr>
+           <tr>
+               <td>{{booking.room}}</td>
+               <td>{{ booking.name }}</td>
+               <td>{{ booking.arrival_date }}</td>
+               <td>{{ booking.deperture_date }}</td>
+               <td>{{ booking.number_rooms }} rooms</td>
+               <td>{{ booking.guest }} customer</td>
+               <td>$ {{ booking.total_price}}</td>
+           </tr>
+        </table>
+        <h2 style="color:brown;">Add Service Support</h2>
+        <table class="table">
+            <tr>
+                <th>Swimming Pool</th>
+                <th>Baby Bed Support</th>
+                <th>Convience Store</th>
+            </tr>
+            <tr>
+                {% for service in booking.roomservice_set.all %}
+                <td>{{service.swimming_pool}}</td>
+                <td>{{ service.baby_bed }}</td>
+                <td>{{ service.convience_store }}</td>
+                {% endfor %}
+            </tr>
+         </table>
+        <a href="{% url 'add-service' booking.id %}" class="btn btn-primary">Add a service</a>
+        <a href="{% url 'index' %}" class="btn btn-primary">Done</a>
 {% endblock %}
