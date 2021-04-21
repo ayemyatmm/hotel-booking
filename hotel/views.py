@@ -19,7 +19,7 @@ class RoomDetailView(generic.DetailView):
 
 class BookingCreate(generic.CreateView):
     model = Booking
-    fields = ['name','arrival_date', 'deperture_date', 'number_rooms', 'guest','room']
+    fields = ['name','arrival_date', 'deperture_date', 'number_rooms', 'guest','room','post_date']
 
     def get_success_url(self):
         return reverse('booking', kwargs={'pk': self.kwargs['pk'],})
@@ -42,16 +42,16 @@ class RoomServiceView(generic.CreateView):
         initial['booking'] = Booking.objects.get(pk=self.kwargs["pk"])
         return initial
 
-class BookingUpdate(LoginRequiredMixin,generic.UpdateView):
+class BookingUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Booking
     fields = '__all__'
     
-class BookingDelete(LoginRequiredMixin,generic.DeleteView):
+class BookingDelete(LoginRequiredMixin, generic.DeleteView):
     model = Booking
 
-class BookingListView(generic.ListView):
+class BookingListView(LoginRequiredMixin, generic.ListView):
     model = Booking
-    fields = ['booking_customer']
+    paginate_by = 10
 
 class BookingDetailView(generic.DetailView):
     model = Booking

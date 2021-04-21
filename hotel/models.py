@@ -1,9 +1,8 @@
 from django.db import models
+import datetime
 
 from django.urls import reverse
 from django.contrib.auth.models import User
-from datetime import datetime
-from datetime import date
 
 # Create your models here.
 class Room(models.Model):
@@ -28,6 +27,7 @@ class Booking(models.Model):
     deperture_date = models.DateField(null=True, blank=True)
     number_rooms = models.IntegerField(max_length=2)
     guest = models.CharField(max_length=100)
+    post_date = models.DateTimeField(default=datetime.datetime.now())
     room = models.ForeignKey(Room,on_delete= models.CASCADE)
 
     def __str__(self):

@@ -6,11 +6,12 @@
            <tr>
                <th>Room Type</th>
                <th>Book Customer Name</th>
-               <th>Arrival Date</th>
+               <th>Arrival Date  </th>
                <th>Deperture Date</th>
                <th>Total Rooms</th>
                <th>Total Guest</th>
                <th>Total Price</th>
+               <th>Booking Date</th>
            </tr>
            <tr>
                <td>{{booking.room}}</td>
@@ -20,6 +21,7 @@
                <td>{{ booking.number_rooms }} rooms</td>
                <td>{{ booking.guest }} customer</td>
                <td>$ {{ booking.total_price}}</td>
+               <td>{{ booking.post_date }}</td>
            </tr>
         </table>
         <h2 style="color:brown;">Add Service Support</h2>
